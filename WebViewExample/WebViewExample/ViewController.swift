@@ -7,14 +7,37 @@
 //
 
 import UIKit
+import WebKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var webView: WKWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+      let url = URL(string: "http://www.google.com")
+        let request = URLRequest(url: url!)
+        self.webView.load(request)
     }
 
-
+    @IBAction func backOn(_ sender: Any) {
+        if self.webView.canGoBack {
+            self.webView.goBack()
+        }
+    }
+   
+    @IBAction func forwardOn(_ sender: Any) {
+        if self.webView.canGoForward {
+            self.webView.goForward()
+        }
+    }
+    
+    @IBAction func refreshOn(_ sender: Any) {
+        self.webView.reload()
+    }
+    
+    @IBAction func stopOn(_ sender: Any) {
+        self.webView.stopLoading()
+    }
+    
 }
 
